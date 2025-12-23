@@ -1,0 +1,135 @@
+/* ---------------- PREMIUM THERAPIST CONTACT PAGE DESIGN ---------------- */
+
+/* Soft pastel gradient background */
+body {
+  background: linear-gradient(135deg, #f9f4ff, #e8f3ff);
+  background-attachment: fixed;
+}
+
+.contact-wrapper {
+  max-width: 750px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Glassmorphism card */
+.contact-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Title */
+.contact-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #004c5a;
+  letter-spacing: 0.5px;
+}
+
+/* Subtext */
+.contact-subtext {
+  font-size: 1.2rem;
+  color: #4e4e4e;
+  line-height: 1.7;
+}
+
+.contact-info {
+  margin-top: 20px;
+}
+
+/* Contact items */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+  color: #333;
+}
+
+/* Icons */
+.contact-icon {
+  font-size: 1.6rem;
+  color: #6f42c1;
+  background: #f2e9ff;
+  padding: 10px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+  transform: scale(1.15);
+  background: #e6d7ff;
+}
+
+/* Links */
+.contact-link {
+  color: #004c5a;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+  color: #006f84;
+  text-decoration: underline;
+}
+
+/* CTA BUTTON */
+.contact-btn {
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  background: #004c5a;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+  background: #006f84;
+  box-shadow: 0 5px 18px rgba(98, 0, 238, 0.3);
+}
+
+/* ---------------- RESPONSIVE DESIGN ---------------- */
+@media (max-width: 768px) {
+  .contact-title {
+    font-size: 2.2rem;
+  }
+
+  .contact-subtext {
+    font-size: 1.05rem;
+  }
+
+  .contact-item {
+    font-size: 1rem;
+  }
+
+  .contact-icon {
+    font-size: 1.4rem;
+    padding: 8px;
+  }
+
+  .contact-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-title {
+    font-size: 1.9rem;
+  }
+
+  .contact-card {
+    padding: 20px;
+  }
+}

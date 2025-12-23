@@ -1,0 +1,249 @@
+/* ===============================
+   SECTION
+================================ */
+.workshop-section {
+  padding: 90px 0;
+  background: linear-gradient(to bottom, #f2faf8, #ffffff);
+}
+
+.section-header h2 {
+  font-size: 40px;
+  font-weight: 800;
+  color: #1f3d3a;
+}
+
+.section-header p {
+  max-width: 720px;
+  margin: 14px auto 60px;
+  color: #5f6f73;
+  font-size: 16px;
+}
+
+.section-badge {
+  display: inline-block;
+  background: #dff3f1;
+  color: #2a8f88;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* ===============================
+   WORKSHOP CARD
+================================ */
+.workshop-card {
+  background: #ffffff;
+  border-radius: 22px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+}
+
+.workshop-card:hover {
+  transform: translateY(-12px);
+}
+
+.workshop-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 22px;
+  text-align: center;
+}
+
+.card-content h5 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f3d3a;
+  margin-bottom: 6px;
+}
+
+.card-content span {
+  color: #2a8f88;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* ===============================
+   OVERLAY
+================================ */
+.workshop-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; /* Added for mobile spacing */
+  z-index: 9999;
+}
+
+/* ===============================
+   MODAL
+================================ */
+.workshop-modal {
+  background: #ffffff;
+  width: 92%;
+  max-width: 520px;
+  border-radius: 26px;
+  padding: 32px;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+
+  /* FIXED SCROLL */
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Smooth scrollbar (optional) */
+.workshop-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.workshop-modal::-webkit-scrollbar-thumb {
+  background: #c7e6e2;
+  border-radius: 10px;
+}
+
+.modal-img {
+  width: 100%;
+  border-radius: 18px;
+  margin-bottom: 18px;
+}
+
+.workshop-modal h3 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1f3d3a;
+}
+
+.modal-subtitle {
+  color: #6b7c80;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.modal-desc {
+  color: #5f6f73;
+  font-size: 15px;
+  margin: 14px 0;
+}
+
+/* ===============================
+   BENEFITS
+================================ */
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0;
+  text-align: left;
+}
+
+.benefits-list li {
+  font-size: 15px;
+  color: #4d5e62;
+  margin-bottom: 8px;
+}
+
+/* ===============================
+   FORM
+================================ */
+.form-control {
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1px solid #d9e6e4;
+}
+
+.form-control:focus {
+  border-color: #2a8f88;
+  box-shadow: none;
+}
+
+/* ===============================
+   BUTTONS
+================================ */
+.purchase-btn {
+  background: #2a8f88;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 34px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  transition: 0.3s;
+
+  /* always visible on modal bottom */
+  display: block;
+  margin: 15px auto 0;
+}
+
+.purchase-btn:hover {
+  background: #237c76;
+}
+
+/* ===============================
+   CONFIRMATION
+================================ */
+.confirmation-box h4 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #2a8f88;
+  margin-bottom: 10px;
+}
+
+.confirmation-box p {
+  color: #5f6f73;
+  font-size: 15px;
+}
+
+/* ===============================
+   CLOSE BUTTON
+================================ */
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  border: none;
+  background: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #444;
+}
+
+/* ===============================
+   MOBILE RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .workshop-section {
+    padding: 60px 15px;
+  }
+
+  .section-header h2 {
+    font-size: 30px;
+  }
+
+  .workshop-card img {
+    height: 200px;
+  }
+
+  .workshop-modal {
+    padding: 26px 20px;
+  }
+
+  .workshop-modal h3 {
+    font-size: 22px;
+  }
+
+  .purchase-btn {
+    width: 100%;
+    padding: 14px;
+  }
+}

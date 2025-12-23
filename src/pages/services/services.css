@@ -1,0 +1,139 @@
+/* Section Background */
+.therapy-section {
+  padding: 90px 0;
+  background: radial-gradient(circle at top, #eef7f6, #ffffff);
+}
+
+/* Header */
+.section-header h2 {
+  font-size: 40px;
+  font-weight: 800;
+  color: #1f3d3a;
+}
+
+.section-header p {
+  max-width: 700px;
+  margin: 14px auto 60px;
+  color: #5f6f73;
+}
+
+.section-badge {
+  display: inline-block;
+  background: #dff3f1;
+  color: #2a8f88;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Service Cards */
+.therapy-card {
+  border: none;
+  height: 100%;
+  padding: 38px 26px;
+  border-radius: 22px;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff, #f8fbfb);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
+  transition: all 0.45s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.therapy-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(42, 143, 136, 0.12),
+    transparent
+  );
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.therapy-card:hover::after {
+  opacity: 1;
+}
+
+.therapy-card:hover {
+  transform: translateY(-14px);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.12);
+}
+
+/* Icons */
+.icon-box {
+  width: 76px;
+  height: 76px;
+  background: linear-gradient(135deg, #e6f4f2, #ffffff);
+  color: #2a8f88;
+  font-size: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+}
+
+.therapy-card h5 {
+  font-weight: 700;
+  color: #1f3d3a;
+  margin-bottom: 12px;
+}
+
+.therapy-card p {
+  font-size: 15px;
+  color: #6b7c80;
+}
+
+/* Who I Help */
+.who-help {
+  margin-top: 90px;
+}
+
+.who-help h3 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #1f3d3a;
+}
+
+.help-card {
+  background: linear-gradient(135deg, #ffffff, #eef7f6);
+  padding: 20px;
+  border-radius: 18px;
+  font-weight: 700;
+  color: #2a8f88;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+  margin-bottom: 18px;
+}
+
+/* Closing Text */
+.closing-text {
+  max-width: 760px;
+  margin: 45px auto 0;
+  font-size: 17px;
+  color: #4d5e62;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .therapy-section {
+    padding: 65px 15px;
+  }
+
+  .section-header h2 {
+    font-size: 30px;
+  }
+
+  .therapy-card {
+    padding: 32px 22px;
+  }
+
+  .closing-text {
+    font-size: 15px;
+  }
+}
