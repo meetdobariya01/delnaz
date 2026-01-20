@@ -1,225 +1,242 @@
-import React, { useState, lazy, Suspense } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import React, { useState, useCallback } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Modal,
+  Button,
+  Form,
+} from "react-bootstrap";
 import { motion, AnimatePresence } from "framer-motion";
 import "./booking.css";
+import Header from "../../component/header/header";
+import Footer from "../../component/footer/footer";
 
-const Header = lazy(() => import("../../component/header/header"));
-const Footer = lazy(() => import("../../component/footer/footer"));
-
-const workshops = [
+const therapies = [
   {
-    id: 1,
-    title: "Managing Anxiety & Stress",
-    image: "./images/i-1.jpg",
-    desc: "Learn practical tools to reduce anxiety, manage stress, and regain emotional balance through therapist-guided techniques.",
-    price: "₹1,499",
-  },
+  id: 1,
+  name: "Anxiety Therapy",
+  image: "/images/i-1.webp",
+  price: "₹1500",
+  description:
+    "Anxiety Therapy with Delnaz Medora offers a safe, nurturing space to calm your mind, release emotional overwhelm, rebuild inner balance, and gently guide you toward clarity, resilience, and lasting emotional wellbeing."
+},
+
   {
     id: 2,
-    title: "Healing Relationships",
-     image: "./images/i-2.jpg",
-    desc: "Improve communication, rebuild trust, and create deeper emotional connections in your relationships.",
-    price: "₹1,999",
+    name: "Depression Therapy",
+    image: "/images/i-2.webp",
+    price: "₹1800",
+    description: "Depression Therapy with Delnaz Medora provides gentle support to navigate emotional heaviness, rediscover self-worth, heal inner pain, restore hope, and empower you to reconnect with purpose, strength, and meaningful daily life.",
+    
   },
   {
     id: 3,
-    title: "Mindfulness for Daily Life",
-    image: "./images/i-3.jpg",
-    desc: "Build mindfulness habits to stay grounded, calm, and emotionally present in daily situations.",
-    price: "₹1,299",
+    name: "Couple Therapy",
+    image: "/images/i-3.webp",
+    price: "₹2000",
+    description: "Couple Therapy with Delnaz Medora creates a supportive space to improve communication, rebuild trust, resolve conflict, deepen emotional connection, and guide partners toward understanding, harmony, and a healthier, more fulfilling relationship together.",
   },
   {
     id: 4,
-    title: "Overcoming Depression",
-    image: "./images/i-4.jpg",
-    desc: "Understand depression, challenge negative thought patterns, and rebuild motivation with therapeutic support.",
-    price: "₹2,199",
+    name: "Child Therapy",
+    image: "/images/i-4.webp",
+    price: "₹1400",
+    description: "Child Therapy with Delnaz Medora nurtures emotional growth through gentle guidance, helping children express feelings, build confidence, manage behavioral challenges, and develop healthy coping skills in a safe, supportive, and understanding therapeutic environment.",
   },
   {
     id: 5,
-    title: "Emotional Healing & Self-Love",
-   image: "./images/i-5.jpg",
-    desc: "Reconnect with yourself, release emotional wounds, and build healthy self-esteem.",
-    price: "₹1,799",
+    name: "Stress Management",
+    image: "/images/i-5.webp",
+    price: "₹1200",
+    description: "Stress Management with Delnaz Medora supports you in reducing overwhelm, balancing emotions, improving focus, and developing effective coping strategies to handle daily pressures while restoring calm, clarity, and emotional stability in life.",
   },
   {
     id: 6,
-    title: "Trauma Recovery & Inner Safety",
-   image: "./images/i-6.jpg",
-    desc: "A gentle, therapist-guided workshop focused on healing trauma and restoring emotional safety.",
-    price: "₹2,499",
+    name: "Trauma Therapy",
+    image: "/images/i-6.webp",
+    price: "₹2200",
+    description: "Trauma Therapy with Delnaz Medora offers compassionate care to process difficult experiences, heal emotional wounds, restore safety, rebuild trust, and empower individuals to move forward with strength, resilience, and renewed self-confidence.",
   },
   {
     id: 7,
-    title: "Anger Management Therapy",
-    image: "./images/i-7.jpg",
-    desc: "Learn healthy ways to understand, process, and express anger without harming yourself or others.",
-    price: "₹1,399",
+    name: "Mindfulness Therapy",
+    image: "/images/i-7.webp",
+    price: "₹1600",
+    description: "Mindfulness Therapy with Delnaz Medora encourages present-moment awareness, emotional regulation, inner calm, and self-connection, helping you reduce anxiety, enhance clarity, and cultivate balance, acceptance, and peace in everyday living.",
   },
   {
     id: 8,
-    title: "Confidence & Self-Esteem Building",
-    image: "./images/i-8.jpg",
-    desc: "Build confidence, overcome self-doubt, and strengthen your personal identity.",
-    price: "₹1,699",
+    name: "Sleep Therapy",
+    image: "/images/i-8.webp",
+    price: "₹1300",
+    description: "Sleep Therapy with Delnaz Medora focuses on improving sleep quality by calming the mind, easing nighttime anxiety, establishing healthy routines, and supporting deep, restorative rest for better emotional balance and overall wellbeing.",
   },
   {
     id: 9,
-    title: "Work Stress & Burnout Recovery",
-    image: "./images/i-1.jpg",
-    desc: "Recover from emotional burnout and learn sustainable work-life balance strategies.",
-    price: "₹1,899",
+    name: "Career Counseling",
+    image: "/images/i-9.webp",
+    price: "₹1700",
+    description: "Career Counseling with Delnaz Medora provides clarity, confidence, and direction by exploring strengths, interests, and goals, helping individuals overcome uncertainty, make informed decisions, and build fulfilling, purpose-driven professional paths.",
   },
 ];
 
 const Booking = () => {
-  const [activeWorkshop, setActiveWorkshop] = useState(null);
+  const [show, setShow] = useState(false);
+  const [selected, setSelected] = useState(null);
   const [step, setStep] = useState(1);
 
+  const openModal = useCallback((therapy) => {
+    setSelected(therapy);
+    setShow(true);
+    setStep(1);
+  }, []);
+
+  const closeModal = () => {
+    setShow(false);
+    setSelected(null);
+  };
+
   return (
-    <div>
-      <Suspense fallback={null}>
-        <Header />
-      </Suspense>
+    <>
+      <Header />
 
-      <section className="workshop-section">
-        <Container>
-          <motion.div
-            className="section-header text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* <span className="section-badge">Therapeutic Workshops</span> */}
-            <h2>Workshops Designed for Healing</h2>
-            <p>
-              Carefully curated therapist-led workshops to support emotional
-              growth, awareness, and resilience.
-            </p>
-          </motion.div>
+      <Container className="therapy-section py-5">
+        <h2 className="text-center mb-5">Therapy Courses</h2>
 
-          <Row className="g-4">
-            {workshops.map((item, index) => (
-              <Col md={4} sm={6} xs={12} key={item.id}>
-                <motion.div
-                  className="workshop-card"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
-                  onClick={() => {
-                    setActiveWorkshop(item);
-                    setStep(1);
-                  }}
-                >
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    loading="lazy"
-                  />
-                  <div className="card-content">
-                    <h5>{item.title}</h5>
-                    <span>{item.price}</span>
-                  </div>
-                </motion.div>
-              </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
+        <Row>
+          {therapies.map((therapy) => (
+            <Col lg={4} md={6} sm={12} key={therapy.id} className="mb-4">
+              <Card
+                className="therapy-card"
+                onClick={() => openModal(therapy)}
+              >
+                <Card.Img
+                  src={therapy.image}
+                  loading="lazy"
+                  alt={therapy.name}
+                />
+                <Card.Body>
+                  <Card.Title>{therapy.name}</Card.Title>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
 
-      <AnimatePresence mode="wait">
-        {activeWorkshop && (
-          <motion.div
-            className="workshop-overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+        {show && selected && (
+          <Modal
+            show={show}
+            onHide={closeModal}
+            centered
+            className="modern-booking-modal custom-width-modal"
           >
             <motion.div
-              className="workshop-modal"
-              initial={{ y: 60, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 60, opacity: 0 }}
-              transition={{ duration: 0.4 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="modal-glass-box"
             >
-              <button
-                className="close-btn"
-                onClick={() => {
-                  setActiveWorkshop(null);
-                  setStep(1);
-                }}
-              >
-                ✕
-              </button>
+              {/* HEADER */}
+              <div className="modal-header-custom">
+                <h5>{selected.name}</h5>
+                <span className="step-badge">Step {step} / 3</span>
+              </div>
 
-              <h3>{activeWorkshop.title}</h3>
-              <p className="modal-subtitle">
-                Therapist-led workshop for emotional healing
-              </p>
+              {/* BODY */}
+              <Modal.Body className="modal-body-custom">
+                <AnimatePresence mode="wait">
+                  {step === 1 && (
+                    <motion.div
+                      key="step1"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      className="text-center"
+                    >
+                      <img
+                        src={selected.image}
+                        loading="lazy"
+                        className="img-fluid rounded modal-img mb-3"
+                        alt={selected.name}
+                      />
+                      <p className="text-muted">
+                        {selected.description}
+                      </p>
+                      <h4 className="price-text">
+                        {selected.price}
+                      </h4>
+                    </motion.div>
+                  )}
 
-              {step === 1 && (
-                <>
-                  <img
-                    src={activeWorkshop.image}
-                    alt={activeWorkshop.title}
-                    className="modal-img"
-                    loading="lazy"
-                  />
-                  <p className="modal-desc">{activeWorkshop.desc}</p>
+                  {step === 2 && (
+                    <motion.div
+                      key="step2"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      <Form>
+                        <Form.Group className="mb-3">
+                          <Form.Label>Full Name</Form.Label>
+                          <Form.Control type="text" />
+                        </Form.Group>
 
-                  <h4>{activeWorkshop.price}</h4>
-                  <Button className="purchase-btn" onClick={() => setStep(2)}>
-                    Book Now
-                  </Button>
-                </>
-              )}
+                        <Form.Group className="mb-3">
+                          <Form.Label>Email Address</Form.Label>
+                          <Form.Control type="email" />
+                        </Form.Group>
 
-              {step === 2 && (
-                <>
-                  <select className="form-control mb-3">
-                    <option>20 July 2025 – 6:00 PM</option>
-                    <option>22 July 2025 – 7:30 PM</option>
-                    <option>25 July 2025 – 5:00 PM</option>
-                  </select>
-                  <Button className="purchase-btn" onClick={() => setStep(3)}>
-                    Continue
-                  </Button>
-                </>
-              )}
+                        <Form.Group className="mb-3">
+                          <Form.Label>Preferred Date</Form.Label>
+                          <Form.Control type="date" />
+                        </Form.Group>
+                      </Form>
+                    </motion.div>
+                  )}
 
-              {step === 3 && (
-                <>
-                  <input className="form-control mb-2" placeholder="Full Name" />
-                  <input className="form-control mb-2" placeholder="Email" />
-                  <input className="form-control mb-3" placeholder="Phone" />
-                  <Button className="purchase-btn" onClick={() => setStep(4)}>
-                    Confirm Booking
-                  </Button>
-                </>
-              )}
+                  {step === 3 && (
+                    <motion.div
+                      key="step3"
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="booking-success text-center"
+                    >
+                      <h3>🎉 Booking Confirmed</h3>
+                      <p>Our therapist will contact you soon.</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Modal.Body>
 
-              {step === 4 && (
-                <div className="confirmation-box">
-                  <h4>🎉 Booking Confirmed</h4>
+              {/* FOOTER */}
+              <div className="modal-footer-custom justify-center">
+                {step > 1 && step < 3 && (
                   <Button
-                    className="purchase-btn"
-                    onClick={() => setActiveWorkshop(null)}
+                    variant="outline-secondary"
+                    onClick={() => setStep(step - 1)}
                   >
-                    Close
+                    Back
                   </Button>
-                </div>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                )}
 
-      <Suspense fallback={null}>
-        <Footer />
-      </Suspense>
-    </div>
+                {step < 3 && (
+                  <Button
+                    className="primary-book-btn"
+                    onClick={() => setStep(step + 1)}
+                  >
+                    {step === 1 ? "Continue" : "Confirm Booking"}
+                  </Button>
+                )}
+              </div>
+            </motion.div>
+          </Modal>
+        )}
+      </Container>
+
+      <Footer />
+    </>
   );
 };
 

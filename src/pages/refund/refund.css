@@ -1,0 +1,59 @@
+.refund-section {
+  background-color: #f4f8f9;
+  padding: 90px 0;
+}
+
+.refund-card {
+  background: #ffffff;
+  padding: 55px;
+  border-radius: 22px;
+  box-shadow: 0 12px 45px rgba(0, 0, 0, 0.08);
+}
+
+.refund-title {
+  font-size: 38px;
+  font-weight: 700;
+  color: #004c5a;
+  margin-bottom: 20px;
+}
+
+.refund-intro {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.refund-card h4 {
+  margin-top: 30px;
+  font-weight: 600;
+  color: #004c5a;
+}
+
+.refund-card p,
+.refund-card li {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+}
+
+.refund-card ul {
+  padding-left: 18px;
+  margin-top: 10px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .refund-card {
+    padding: 30px 22px;
+  }
+
+  .refund-title {
+    font-size: 28px;
+  }
+
+  .refund-card p,
+  .refund-card li {
+    font-size: 15px;
+  }
+}

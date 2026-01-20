@@ -7,6 +7,7 @@ import Header from "../../component/header/header";
 import Footer from "../../component/footer/footer";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Testimonial from "../../component/testimonial/testimonial";
 
 const cardVariant = {
   hidden: { opacity: 0, y: 60 },
@@ -77,7 +78,7 @@ const Home = () => {
                 className="order-1 order-md-2 hero-img-box text-center"
               >
                 <motion.img
-                  src={"./images/delnaz-medora.png"}
+                  src={"./images/delnaz-medora.jpeg"}
                   alt="Therapist"
                   className="hero-img"
                   initial={{ opacity: 0, x: 80 }}
@@ -88,6 +89,9 @@ const Home = () => {
             </Row>
           </Container>
         </section>
+
+        {/* caresoul */}
+        <Testimonial/>
         {/* secound section */}
         <section className="help-section">
           <Container>
@@ -120,7 +124,7 @@ const Home = () => {
                   whileInView="visible"
                 >
                   <img
-                    src="/images/th-1.jpg"
+                    src="/images/c-11.jpg"
                     alt="Solve Issues"
                     className="help-img"
                   />
@@ -141,7 +145,7 @@ const Home = () => {
                   whileInView="visible"
                 >
                   <img
-                    src="/images/th-2.jpg"
+                    src="/images/c-22.jpg"
                     alt="Therapist Training"
                     className="help-img"
                   />
@@ -164,7 +168,7 @@ const Home = () => {
                   whileInView="visible"
                 >
                   <img
-                    src="/images/th-3.jpg"
+                    src="/images/c-33.jpg"
                     alt="Book Therapist"
                     className="help-img"
                   />
@@ -258,7 +262,7 @@ const Home = () => {
               {/* Image Section */}
               <Col md={6} sm={12} className="image-col">
                 <motion.img
-                  src="./images/delnaz-medora.png"
+                  src="./images/delnaz-2.jpeg"
                   alt="Delnaz Medora"
                   className="meet-img"
                   initial={{ opacity: 0, x: 60 }}
@@ -300,7 +304,11 @@ const Home = () => {
             <Link to="/booking" className="start-btn">
               BOOK NOW
             </Link>
+             <Link to="/typeform" className="start-btn">
+              Workshop
+            </Link>
           </motion.div>
+          
 
           {/* SEO Keywords Section for ranking */}
           <div className="seo-keywords">

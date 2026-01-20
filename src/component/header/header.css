@@ -3,14 +3,14 @@
 /* logo */
 
 .logo-img {
-  height: 55px;     /* adjust size */
+  height: 100px;     /* adjust size */
   width: auto;
   object-fit: contain;
 }
 
 @media (max-width: 768px) {
   .logo-img {
-    height: 45px;
+    height: 90px;
   }
 }
 
@@ -103,4 +103,22 @@
   .desktop-menu {
     display: none !important;
   }
+}
+/* Login Icon */
+.login-icon {
+  display: flex;
+  align-items: center;
+}
+
+.login-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  color: #333 !important;
+  text-decoration: none;
+}
+
+.login-link:hover {
+  color: #7b4bff !important;
 }

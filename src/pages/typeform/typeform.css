@@ -1,0 +1,130 @@
+/* ============================
+   PAGE WRAPPER
+============================ */
+.therapy-wrapper {
+  background: linear-gradient(135deg, #f8fafc, #eef2f7);
+  min-height: 100vh;
+  padding: 60px 15px;
+}
+
+/* ============================
+   FORM CARD
+============================ */
+.form-card {
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================
+   HEADINGS
+============================ */
+.form-card h4 {
+  font-weight: 600;
+  color: #053262;
+  margin-bottom: 15px;
+}
+
+/* ============================
+   INPUTS & SELECT
+============================ */
+.form-control,
+.form-select {
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid #dce3ec;
+  transition: all 0.3s ease;
+  font-size: 15px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #053262;
+  box-shadow: 0 0 0 0.2rem rgba(5, 50, 98, 0.15);
+}
+
+/* ============================
+   TEXTAREA
+============================ */
+textarea.form-control {
+  resize: none;
+}
+
+/* ============================
+   CONCERNS SCROLL AREA
+============================ */
+.concern-scroll {
+  max-height: 260px;
+  overflow-y: auto;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f9fbfd;
+}
+
+/* Scrollbar Styling */
+.concern-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.concern-scroll::-webkit-scrollbar-thumb {
+  background: #053262;
+  border-radius: 10px;
+}
+
+/* ============================
+   CHECKBOX
+============================ */
+.form-check {
+  margin-bottom: 8px;
+}
+
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #053262;
+  border-color: #053262;
+}
+
+/* ============================
+   SUBMIT BUTTON
+============================ */
+button.btn-success {
+  background-color: #053262;
+  border-color: #053262;
+  border-radius: 30px;
+  padding: 12px 40px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button.btn-success:hover {
+  background-color: #04264a;
+  border-color: #04264a;
+  transform: translateY(-2px);
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 768px) {
+  .form-card {
+    padding: 25px;
+  }
+
+  .form-card h4 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 576px) {
+  .therapy-wrapper {
+    padding: 40px 10px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+}

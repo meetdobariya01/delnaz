@@ -1,0 +1,136 @@
+.login-section {
+  background: linear-gradient(135deg, #f4f1ff, #ffffff);
+}
+
+/* CARD */
+.login-card {
+  border-radius: 24px;
+  padding: 35px;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* ✅ Ensures inputs are above glow */
+}
+
+/* GLOW BORDER (FIXED) */
+.login-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(120deg, #b388ff, #ff9ad5, #6ecbff);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradientMove 6s linear infinite;
+
+  pointer-events: none; /* ✅ CRITICAL FIX */
+  z-index: -1;          /* ✅ Keeps it behind content */
+}
+
+@keyframes gradientMove {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* TITLES */
+.login-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #3c2c77;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: #777;
+}
+
+/* INPUTS */
+.login-input {
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  position: relative;
+  z-index: 2; /* ✅ Click-safe */
+}
+
+.login-input:focus {
+  box-shadow: none;
+  border-color: #b388ff;
+}
+
+/* BUTTONS */
+.login-btn {
+  background: linear-gradient(135deg, #7b4bff, #b388ff);
+  border: none;
+  border-radius: 14px;
+  padding: 12px;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+
+.google-btn {
+  background: #fff;
+  color: #444;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 12px;
+  font-weight: 500;
+  position: relative;
+  z-index: 2;
+}
+
+.google-btn:hover {
+  background: #f7f7f7;
+}
+
+/* DIVIDER */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.divider span {
+  margin: 0 10px;
+  color: #999;
+  font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+}
+
+/* FOOTER LINKS */
+.login-footer a {
+  color: #7b4bff;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* MOBILE */
+@media (max-width: 576px) {
+  .login-card {
+    padding: 25px;
+  }
+
+  .login-title {
+    font-size: 24px;
+  }
+}

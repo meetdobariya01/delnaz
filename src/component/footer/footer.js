@@ -31,10 +31,10 @@ const Footer = () => {
 
         {/* Links */}
         <ul className="footer-menu">
-          <li><a href="#privacy">Privacy Policy</a></li>
-          <li><a href="#terms">Terms</a></li>
-          <li><a href="#refund">Refund Policy</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="/policy">Privacy Policy</a></li>
+          <li><a href="/condition">Terms & Conditions </a></li>
+          <li><a href="/refund">Refund & Cancellation </a></li>
+          <li><a href="contact">Contact</a></li>
         </ul>
 
         <br />

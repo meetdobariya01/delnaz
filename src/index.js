@@ -11,8 +11,13 @@ import Contact from "./pages/contact/contact";
 import Services from "./pages/services/services";
 import Booking from "./pages/booking/booking";
 import Workshop from "./pages/workshop/workshop";
-import Testimonial from "./pages/testimonial/testimonial";
+// import Testimonial from "./pages/testimonial/testimonial";
 import Blog from "./pages/blog/blog";
+import Typeform from "./pages/typeform/typeform";
+import Login from "./pages/login/login";
+import Policy from "./pages/policy/policy";
+import Condition from "./pages/condition/condition";
+import Refund from "./pages/refund/refund";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -24,10 +29,14 @@ root.render(
       <Route path="contact" element={<Contact />} />
       <Route path="booking" element={<Booking />} />
       <Route path="workshop" element={<Workshop />} />
-      <Route path="testimonial" element={<Testimonial />} />
-      {/* <Route path="booking" element={<Booking/>} /> */}
+      {/* <Route path="testimonial" element={<Testimonial />} /> */}
+      <Route path="typeform" element={<Typeform/>} />
             <Route path="blog" element={<Blog/>} />
+             <Route path="login" element={<Login/>} />
       {/* <Route path="*" element={<Error/>} /> */}
+      <Route path="policy" element={<Policy />} />
+       <Route path="condition" element={<Condition/>} />
+          <Route path="refund" element={<Refund/>} />
     </Routes>
   </Router>
 );

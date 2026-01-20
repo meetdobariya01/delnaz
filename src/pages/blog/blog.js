@@ -167,11 +167,11 @@ const Blog = () => {
             </p>
           </Modal.Body>
 
-          <Modal.Footer>
+          {/* <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-          </Modal.Footer>
+          </Modal.Footer> */}
         </Modal>
       )}
 

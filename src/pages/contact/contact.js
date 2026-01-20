@@ -42,10 +42,10 @@ const Contact = () => {
             >
               <strong>Email:</strong>
               <a
-                href={`mailto:support@delnazmedora.com?subject=Session%20Inquiry&body=Hello,%0D%0A%0D%0AI would like to know more about your therapy sessions.%0D%0A%0D%0AThank you.`}
+                href="mailto:therapy@delnazmedora.com?subject=Session%20Inquiry&body=Hello%20Delnaz,%0D%0A%0D%0AI%20would%20like%20to%20know%20more%20about%20your%20therapy%20sessions.%0D%0A%0D%0AThank%20you."
                 className="contact-link ms-2"
               >
-                support@delnazmedora.com
+                therapy@delnazmedora.com
               </a>
             </motion.p>
 
@@ -56,7 +56,7 @@ const Contact = () => {
             >
               <strong>Instagram:</strong>
               <a
-                href="https://www.instagram.com/delnazmedora"
+                href="https://www.instagram.com/therapist.delnazmedora"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-link ms-2"

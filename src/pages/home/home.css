@@ -444,7 +444,7 @@
 
 /* RIGHT IMAGE BACKGROUND */
 .img-box {
-  background-image: url("../../../public/images/th-1.jpg");
+  background-image: url("../../../public/images/c-11.jpg");
   background-size: cover;
   background-position: center;
   height: 450px;
@@ -476,4 +476,8 @@
 
 button.help-btn.btn.btn-primary {
     background-color: #004c5a;
+}
+
+a.start-btn {
+    margin-left: 16px;
 }

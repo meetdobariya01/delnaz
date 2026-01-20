@@ -173,7 +173,7 @@ const About = () => {
                 transition={{ duration: 0.9 }}
                 viewport={{ once: true }}
               >
-                <img src="./images/delnaz-medora.png" alt="Delnaz Medora" />
+                <img src="./images/delnaz-medora.jpeg" alt="Delnaz Medora" />
               </motion.div>
             </Col>
           </Row>
@@ -265,14 +265,14 @@ const About = () => {
                 className="gift-images"
               >
                 <img
-                  src="./images/th-1.jpg"
+                  src="./images/c-11.jpg"
                   alt="Gift"
-                  className="gift-img img-fluid"
+                  className="gift-img "
                 />
                 <img
-                  src="/images/th-2.jpg"
+                  src="/images/c-22.jpg"
                   alt="Gift"
-                  className="gift-img2 img-fluid"
+                  className="gift-img2"
                 />
               </motion.div>
             </Col>
@@ -374,7 +374,7 @@ const About = () => {
                   viewport={{ once: true }}
                 >
                   <img
-                    src="/images/th-1.jpg"
+                    src="./images/c-11.jpg"
                     alt="Therapy Services"
                     className="cta-img"
                   />
