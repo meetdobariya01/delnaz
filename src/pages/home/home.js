@@ -8,6 +8,7 @@ import Footer from "../../component/footer/footer";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Testimonial from "../../component/testimonial/testimonial";
+import Sessionform from "../../component/session-form/sessionform";
 
 const cardVariant = {
   hidden: { opacity: 0, y: 60 },
@@ -91,7 +92,7 @@ const Home = () => {
         </section>
 
         {/* caresoul */}
-        <Testimonial/>
+        <Testimonial />
         {/* secound section */}
         <section className="help-section">
           <Container>
@@ -116,7 +117,7 @@ const Home = () => {
 
             <Row className="g-4 justify-content-center mt-4">
               {/* Card 1 */}
-              <Col md={4} sm={12}>
+              <Col md={3} sm={12}>
                 <motion.div
                   className="help-card"
                   variants={cardVariant}
@@ -130,37 +131,13 @@ const Home = () => {
                   />
                   <h3 className="help-card-title">Solve Personal Issues</h3>
                   <p>
-                    Break free from emotional blocks, anxiety, and limiting
-                    beliefs.
+                    Emotional healing & one on one therapy packages.
                   </p>
                 </motion.div>
               </Col>
 
               {/* Card 2 */}
-              <Col md={4} sm={12}>
-                <motion.div
-                  className="help-card"
-                  variants={cardVariant}
-                  initial="hidden"
-                  whileInView="visible"
-                >
-                  <img
-                    src="/images/c-22.jpg"
-                    alt="Therapist Training"
-                    className="help-img"
-                  />
-                  <h3 className="help-card-title">
-                    Learn About Therapist Training
-                  </h3>
-                  <p>
-                    Become a certified transformational therapist and guide
-                    others.
-                  </p>
-                </motion.div>
-              </Col>
-
-              {/* Card 3 */}
-              <Col md={4} sm={12}>
+              <Col md={3} sm={12}>
                 <motion.div
                   className="help-card"
                   variants={cardVariant}
@@ -169,12 +146,54 @@ const Home = () => {
                 >
                   <img
                     src="/images/c-33.jpg"
+                    alt="Therapist Training"
+                    className="help-img"
+                  />
+                  <h3 className="help-card-title">
+                    Parenting workshop 
+                  </h3>
+                  <p>
+                   Mindful therapy for conscious, confident parenting.
+                  </p>
+                </motion.div>
+              </Col>
+
+              {/* Card 3 */}
+              <Col md={3} sm={12}>
+                <motion.div
+                  className="help-card"
+                  variants={cardVariant}
+                  initial="hidden"
+                  whileInView="visible"
+                >
+                  <img
+                    src="/images/c-44.jpg"
                     alt="Book Therapist"
                     className="help-img"
                   />
-                  <h3 className="help-card-title">Book a Therapist</h3>
+                  <h3 className="help-card-title">Group workshop for emotional healing</h3>
                   <p>
-                    Experience 1:1 personalized therapeutic healing and support.
+                    Emotional Healing Circle.
+                  </p>
+                </motion.div>
+              </Col>
+
+              {/* Card 4 */}
+              <Col md={3} sm={12}>
+                <motion.div
+                  className="help-card"
+                  variants={cardVariant}
+                  initial="hidden"
+                  whileInView="visible"
+                >
+                  <img
+                    src="/images/c-22.jpg"
+                    alt="Therapy Packages"
+                    className="help-img"
+                  />
+                  <h3 className="help-card-title">Corporate workshop with therapeutic interventions</h3>
+                  <p>
+                    Mindful Corporate Healing.
                   </p>
                 </motion.div>
               </Col>
@@ -187,7 +206,7 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <Button className="help-btn" onClick={() => navigate("/booking")}>
+              <Button className="help-btn" onClick={() => navigate("/Sanctum")}>
                 Book a Session
               </Button>
 
@@ -301,14 +320,13 @@ const Home = () => {
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1.2 }}
           >
-            <Link to="/booking" className="start-btn">
+            <Link to="/Sanctum" className="start-btn">
               BOOK NOW
             </Link>
-             <Link to="/typeform" className="start-btn">
+            <Link to="/typeform" className="start-btn">
               Workshop
             </Link>
           </motion.div>
-          
 
           {/* SEO Keywords Section for ranking */}
           <div className="seo-keywords">
@@ -346,47 +364,10 @@ const Home = () => {
             clarity and confidence.
           </motion.p>
         </section>
+        
         {/* sixth section */}
-        <section className="join-wrapper">
-          <Container fluid>
-            <Row className="align-items-center">
-              {/* LEFT CONTENT */}
-              <Col md={6} className="text-section">
-                <motion.h2
-                  className="join-title"
-                  initial={{ opacity: 0, y: -40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1 }}
-                >
-                  Begin Your Healing Journey Today
-                </motion.h2>
-
-                <motion.p
-                  className="join-subtitle"
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.2 }}
-                >
-                  Join thousands receiving weekly emotional wellness insights,
-                  exclusive session offers, and guided therapeutic audio tools
-                  straight to your inbox — supporting your growth when you need
-                  it most.
-                </motion.p>
-
-                {/* <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1.3 }}
-                >
-                  <Button className="join-btn">JOIN THE COMMUNITY</Button>
-                </motion.div> */}
-              </Col>
-
-              {/* RIGHT IMAGE */}
-              <Col md={6} className="img-box"></Col>
-            </Row>
-          </Container>
-        </section>
+        <Sessionform />
+        
         {/* footer */}
         <Footer />
       </div>

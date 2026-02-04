@@ -2,9 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import Header from "../../component/header/header";
 import "./about.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-
 import { FaUserMd, FaBrain, FaHandsHelping } from "react-icons/fa";
 import Footer from "../../component/footer/footer";
 
@@ -25,7 +24,41 @@ const cardData = [
     text: "Empowering clients on their journey of personal growth, deep healing, and inner transformation through structured, heart-centered coaching and holistic tools.",
   },
 ];
+const issues = [
+  {
+    title: "Depression",
+    desc: "Break free from emotional highs and lows. Rediscover yourself with hope.",
+  },
+  {
+    title: "Anxiety",
+    desc: "Ease overwhelming thoughts and embrace inner calm with daily techniques.",
+  },
+  {
+    title: "Fears & Phobia",
+    desc: "Transform fear into self-awareness and find freedom through therapy.",
+  },
+  {
+    title: "Weight Issues",
+    desc: "Heal emotional triggers, build self-confidence, and balance mind & body.",
+  },
+  {
+    title: "Addictions",
+    desc: "Break free from habits like alcohol, smoking, drugs, or unhealthy patterns.",
+  },
+  {
+    title: "Relationship Issues",
+    desc: "Build stronger, healthier, and more authentic connections with boundaries.",
+  },
+];
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.15, duration: 0.6 },
+  }),
+};
 const About = () => {
   const items = [
     "Safe, warm, judgement-free sessions",
@@ -264,16 +297,8 @@ const About = () => {
                 viewport={{ once: true }}
                 className="gift-images"
               >
-                <img
-                  src="./images/c-11.jpg"
-                  alt="Gift"
-                  className="gift-img "
-                />
-                <img
-                  src="/images/c-22.jpg"
-                  alt="Gift"
-                  className="gift-img2"
-                />
+                <img src="./images/c-11.jpg" alt="Gift" className="gift-img " />
+                <img src="/images/c-22.jpg" alt="Gift" className="gift-img2" />
               </motion.div>
             </Col>
           </Row>
@@ -315,77 +340,85 @@ const About = () => {
           </Container>
         </section>
         {/* sixth section */}
-        <section className="therapy-cta-wrapper">
+        <section className="py-5 bg-light">
           <Container>
-            <Row className="align-items-center">
-              {/* LEFT TEXT BLOCK */}
-              <Col md={7}>
+            {/* Intro Section */}
+            <Row className="mb-5 justify-content-center text-center">
+              <Col lg={9}>
                 <motion.h2
-                  className="cta-title"
                   initial={{ opacity: 0, y: -20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7 }}
-                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="fw-bold mb-3"
                 >
-                  Explore Her Services
+                  Delnaz Medora
                 </motion.h2>
 
                 <motion.p
-                  className="cta-description"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  Discover powerful healing techniques including EFT, NLP, and
-                  emotional wellness coaching designed to help you heal, grow,
-                  and transform from the inside out.
-                </motion.p>
-
-                {/* SEO keywords included naturally */}
-                <motion.p
-                  className="cta-seo"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="text-muted fs-5"
                 >
-                  <strong>Keywords:</strong> About therapist India, EFT
-                  specialist profile, NLP coach bio, emotional wellness expert
+                  Delnaz Medora has helped individuals overcome emotional
+                  challenges and transform their lives through powerful
+                  therapeutic methods.
                 </motion.p>
 
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  viewport={{ once: true }}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-muted"
                 >
-                  <Button className="cta-btn">Explore Her Services</Button>
-                </motion.div>
-              </Col>
+                  She empowers clients to take charge of their emotions,
+                  behaviours, and actions—unlocking deep inner healing and
+                  lasting change.
+                </motion.p>
 
-              {/* RIGHT SIDE IMAGE */}
-              <Col md={5}>
-                <motion.div
-                  className="cta-img-wrap"
-                  initial={{ opacity: 0, x: 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.7 }}
-                  viewport={{ once: true }}
+                <motion.blockquote
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6 }}
+                  className="fst-italic fw-semibold mt-4"
                 >
-                  <img
-                    src="./images/c-11.jpg"
-                    alt="Therapy Services"
-                    className="cta-img"
-                  />
-                </motion.div>
+                  “My goal is to empower people to take charge of their lives by
+                  taking charge of their thoughts & emotions.”
+                </motion.blockquote>
               </Col>
+            </Row>
+
+            {/* Therapy Cards */}
+            <Row className="g-4">
+              {issues.map((item, index) => (
+                <Col md={6} lg={4} key={index}>
+                  <motion.div
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    custom={index}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <Card className="h-100 shadow-sm border-0 rounded-4 p-3">
+                      <Card.Body>
+                        <Card.Title className="fw-bold mb-2">
+                          {item.title}
+                        </Card.Title>
+                        <Card.Text className="text-muted">
+                          {item.desc}
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </motion.div>
+                </Col>
+              ))}
             </Row>
           </Container>
         </section>
       </section>
       {/* footer */}
-      <Footer/>
+      <Footer />
     </div>
   );
 };

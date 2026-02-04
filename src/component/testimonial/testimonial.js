@@ -73,7 +73,7 @@ const Testimonial = () => {
           viewport={{ once: true }}
           className="text-center mb-5"
         >
-          <h2 className="testimonial-title">What Clients Say</h2>
+          <h2 className="testimonial-title">Testimonials</h2>
           <p className="testimonial-subtitle">
             Real experiences. Genuine healing.
           </p>

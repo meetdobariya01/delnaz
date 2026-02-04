@@ -5,6 +5,7 @@ import { FaUser, FaHeart, FaUsers, FaLaptopMedical } from "react-icons/fa";
 import "./services.css";
 import Header from "../../component/header/header";
 import Footer from "../../component/footer/footer";
+import Booking from "../booking/booking";
 
 const services = [
   {
@@ -138,6 +139,9 @@ const Services = () => {
         </Container>
       </section>
 
+      <section>
+        <Booking />
+      </section>
       <Footer />
     </div>
   );

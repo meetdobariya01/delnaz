@@ -14,7 +14,7 @@ h2 {
 /* =========================
    THERAPY CARD
 ========================= */
-.therapy-card {
+.therapy-course-card {
   border: none;
   border-radius: 18px;
   overflow: hidden;
@@ -25,7 +25,7 @@ h2 {
   will-change: transform;
 }
 
-.therapy-card:hover {
+.therapy-course-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
 }
@@ -33,7 +33,7 @@ h2 {
 /* =========================
    CARD IMAGE
 ========================= */
-.therapy-card img {
+.therapy-course-card img {
   height: 230px;
   width: 100%;
   object-fit: cover;
@@ -41,19 +41,19 @@ h2 {
   will-change: transform;
 }
 
-.therapy-card:hover img {
+.therapy-course-card:hover img {
   transform: scale(1.08);
 }
 
 /* =========================
    CARD BODY
 ========================= */
-.therapy-card .card-body {
+.therapy-course-card .card-body {
   text-align: center;
   padding: 18px;
 }
 
-.therapy-card .card-title {
+.therapy-course-card .card-title {
   font-size: 1.15rem;
   font-weight: 600;
   color: #333;
@@ -187,7 +187,7 @@ h2 {
    RESPONSIVE
 ========================= */
 @media (max-width: 768px) {
-  .therapy-card img {
+  .therapy-course-card img {
     height: 200px;
   }
 
@@ -201,7 +201,7 @@ h2 {
 }
 
 @media (max-width: 576px) {
-  .therapy-card img {
+  .therapy-course-card img {
     height: 180px;
   }
 }

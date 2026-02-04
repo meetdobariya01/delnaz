@@ -18,6 +18,7 @@ import Login from "./pages/login/login";
 import Policy from "./pages/policy/policy";
 import Condition from "./pages/condition/condition";
 import Refund from "./pages/refund/refund";
+import Sanctum from "./pages/sanctum/sanctum";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -27,18 +28,18 @@ root.render(
       <Route path="about" element={<About />} />
       <Route path="services" element={<Services />} />
       <Route path="contact" element={<Contact />} />
-      <Route path="booking" element={<Booking />} />
+      <Route path="Sanctum" element={<Sanctum />} />
       <Route path="workshop" element={<Workshop />} />
       {/* <Route path="testimonial" element={<Testimonial />} /> */}
-      <Route path="typeform" element={<Typeform/>} />
-            <Route path="blog" element={<Blog/>} />
-             <Route path="login" element={<Login/>} />
+      <Route path="typeform" element={<Typeform />} />
+      <Route path="blog" element={<Blog />} />
+      <Route path="login" element={<Login />} />
       {/* <Route path="*" element={<Error/>} /> */}
       <Route path="policy" element={<Policy />} />
-       <Route path="condition" element={<Condition/>} />
-          <Route path="refund" element={<Refund/>} />
+      <Route path="condition" element={<Condition />} />
+      <Route path="refund" element={<Refund />} />
     </Routes>
-  </Router>
+  </Router>,
 );
 
 // If you want to start measuring performance in your app, pass a function

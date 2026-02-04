@@ -61,11 +61,43 @@ const Contact = () => {
                 rel="noopener noreferrer"
                 className="contact-link ms-2"
               >
-                @delnazmedora
+                @therapist.delnazmedora
               </a>
             </motion.p>
 
             <motion.p
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <strong>Youtube:</strong>
+              <a
+                href="http://www.youtube.com/@DELNAZMEDORA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link ms-2"
+              >
+                @DELNAZMEDORA
+              </a>
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <strong>Facebook:</strong>
+              <a
+                href="https://www.facebook.com/searchingsoulz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link ms-2"
+              >
+                @Searchingsoulz 
+              </a>
+            </motion.p>
+
+            {/* <motion.p
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -74,11 +106,11 @@ const Contact = () => {
               <a href="tel:+91" className="contact-link ms-2">
                 (+91)
               </a>
-            </motion.p>
+            </motion.p> */}
           </div>
 
           <motion.a
-            href="tel:+919999999999" // <-- your phone number here
+            href="mailto:therapy@delnazmedora.com?subject=Session%20Inquiry&body=Hello%20Delnaz,%0D%0A%0D%0AI%20would%20like%20to%20know%20more%20about%20your%20therapy%20sessions.%0D%0A%0D%0AThank%20you." // <-- your phone number here
             className="contact-btn btn btn-primary mt-4 w-100 text-center"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

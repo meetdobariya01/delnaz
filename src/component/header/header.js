@@ -35,7 +35,7 @@ const Header = () => {
   const menuItems = [
     "About",
     "Services",
-    "Booking",
+    "Sanctum",
     "Blog",
     "Contact",
   ];

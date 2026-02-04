@@ -15,70 +15,77 @@ import Footer from "../../component/footer/footer";
 
 const therapies = [
   {
-  id: 1,
-  name: "Anxiety Therapy",
-  image: "/images/i-1.webp",
-  price: "₹1500",
-  description:
-    "Anxiety Therapy with Delnaz Medora offers a safe, nurturing space to calm your mind, release emotional overwhelm, rebuild inner balance, and gently guide you toward clarity, resilience, and lasting emotional wellbeing."
-},
+    id: 1,
+    name: "Anxiety Therapy",
+    image: "/images/i-1.webp",
+    price: "₹1500",
+    description:
+      "Anxiety Therapy with Delnaz Medora offers a safe, nurturing space to calm your mind, release emotional overwhelm, rebuild inner balance, and gently guide you toward clarity, resilience, and lasting emotional wellbeing.",
+  },
 
   {
     id: 2,
     name: "Depression Therapy",
     image: "/images/i-2.webp",
     price: "₹1800",
-    description: "Depression Therapy with Delnaz Medora provides gentle support to navigate emotional heaviness, rediscover self-worth, heal inner pain, restore hope, and empower you to reconnect with purpose, strength, and meaningful daily life.",
-    
+    description:
+      "Depression Therapy with Delnaz Medora provides gentle support to navigate emotional heaviness, rediscover self-worth, heal inner pain, restore hope, and empower you to reconnect with purpose, strength, and meaningful daily life.",
   },
   {
     id: 3,
     name: "Couple Therapy",
     image: "/images/i-3.webp",
     price: "₹2000",
-    description: "Couple Therapy with Delnaz Medora creates a supportive space to improve communication, rebuild trust, resolve conflict, deepen emotional connection, and guide partners toward understanding, harmony, and a healthier, more fulfilling relationship together.",
+    description:
+      "Couple Therapy with Delnaz Medora creates a supportive space to improve communication, rebuild trust, resolve conflict, deepen emotional connection, and guide partners toward understanding, harmony, and a healthier, more fulfilling relationship together.",
   },
   {
     id: 4,
     name: "Child Therapy",
     image: "/images/i-4.webp",
     price: "₹1400",
-    description: "Child Therapy with Delnaz Medora nurtures emotional growth through gentle guidance, helping children express feelings, build confidence, manage behavioral challenges, and develop healthy coping skills in a safe, supportive, and understanding therapeutic environment.",
+    description:
+      "Child Therapy with Delnaz Medora nurtures emotional growth through gentle guidance, helping children express feelings, build confidence, manage behavioral challenges, and develop healthy coping skills in a safe, supportive, and understanding therapeutic environment.",
   },
   {
     id: 5,
     name: "Stress Management",
     image: "/images/i-5.webp",
     price: "₹1200",
-    description: "Stress Management with Delnaz Medora supports you in reducing overwhelm, balancing emotions, improving focus, and developing effective coping strategies to handle daily pressures while restoring calm, clarity, and emotional stability in life.",
+    description:
+      "Stress Management with Delnaz Medora supports you in reducing overwhelm, balancing emotions, improving focus, and developing effective coping strategies to handle daily pressures while restoring calm, clarity, and emotional stability in life.",
   },
   {
     id: 6,
     name: "Trauma Therapy",
     image: "/images/i-6.webp",
     price: "₹2200",
-    description: "Trauma Therapy with Delnaz Medora offers compassionate care to process difficult experiences, heal emotional wounds, restore safety, rebuild trust, and empower individuals to move forward with strength, resilience, and renewed self-confidence.",
+    description:
+      "Trauma Therapy with Delnaz Medora offers compassionate care to process difficult experiences, heal emotional wounds, restore safety, rebuild trust, and empower individuals to move forward with strength, resilience, and renewed self-confidence.",
   },
   {
     id: 7,
     name: "Mindfulness Therapy",
     image: "/images/i-7.webp",
     price: "₹1600",
-    description: "Mindfulness Therapy with Delnaz Medora encourages present-moment awareness, emotional regulation, inner calm, and self-connection, helping you reduce anxiety, enhance clarity, and cultivate balance, acceptance, and peace in everyday living.",
+    description:
+      "Mindfulness Therapy with Delnaz Medora encourages present-moment awareness, emotional regulation, inner calm, and self-connection, helping you reduce anxiety, enhance clarity, and cultivate balance, acceptance, and peace in everyday living.",
   },
   {
     id: 8,
     name: "Sleep Therapy",
     image: "/images/i-8.webp",
     price: "₹1300",
-    description: "Sleep Therapy with Delnaz Medora focuses on improving sleep quality by calming the mind, easing nighttime anxiety, establishing healthy routines, and supporting deep, restorative rest for better emotional balance and overall wellbeing.",
+    description:
+      "Sleep Therapy with Delnaz Medora focuses on improving sleep quality by calming the mind, easing nighttime anxiety, establishing healthy routines, and supporting deep, restorative rest for better emotional balance and overall wellbeing.",
   },
   {
     id: 9,
     name: "Career Counseling",
     image: "/images/i-9.webp",
     price: "₹1700",
-    description: "Career Counseling with Delnaz Medora provides clarity, confidence, and direction by exploring strengths, interests, and goals, helping individuals overcome uncertainty, make informed decisions, and build fulfilling, purpose-driven professional paths.",
+    description:
+      "Career Counseling with Delnaz Medora provides clarity, confidence, and direction by exploring strengths, interests, and goals, helping individuals overcome uncertainty, make informed decisions, and build fulfilling, purpose-driven professional paths.",
   },
 ];
 
@@ -100,7 +107,7 @@ const Booking = () => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <Container className="therapy-section py-5">
         <h2 className="text-center mb-5">Therapy Courses</h2>
@@ -109,7 +116,7 @@ const Booking = () => {
           {therapies.map((therapy) => (
             <Col lg={4} md={6} sm={12} key={therapy.id} className="mb-4">
               <Card
-                className="therapy-card"
+                className="therapy-course-card"
                 onClick={() => openModal(therapy)}
               >
                 <Card.Img
@@ -119,6 +126,9 @@ const Booking = () => {
                 />
                 <Card.Body>
                   <Card.Title>{therapy.name}</Card.Title>
+                  <button className="btn btn-outline-dark">
+                    Book Now - {therapy.price}
+                  </button>
                 </Card.Body>
               </Card>
             </Col>
@@ -161,12 +171,8 @@ const Booking = () => {
                         className="img-fluid rounded modal-img mb-3"
                         alt={selected.name}
                       />
-                      <p className="text-muted">
-                        {selected.description}
-                      </p>
-                      <h4 className="price-text">
-                        {selected.price}
-                      </h4>
+                      <p className="text-muted">{selected.description}</p>
+                      <h4 className="price-text">{selected.price}</h4>
                     </motion.div>
                   )}
 
@@ -235,7 +241,7 @@ const Booking = () => {
         )}
       </Container>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
