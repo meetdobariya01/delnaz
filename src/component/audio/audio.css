@@ -1,0 +1,144 @@
+/* VoiceSection.css */
+
+.voice-section {
+  background: linear-gradient(to bottom, #f8f5ef, #ffffff);
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 42px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  color: #777;
+  font-size: 17px;
+}
+
+.voice-card {
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  height: 100%;
+}
+
+.voice-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.voice-image {
+  /* height: 350px; */
+  width: 100%;
+  object-fit: cover;
+  transition: 0.6s ease;
+}
+
+.voice-card:hover .voice-image {
+  transform: scale(1.08);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.35),
+    transparent
+  );
+}
+
+.voice-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.audio-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.audio-btn {
+  border: none;
+  background: linear-gradient(135deg, #111, #444);
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 500;
+  transition: 0.4s ease;
+}
+
+.audio-btn:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #000, #222);
+}
+
+.volume-icon {
+  font-size: 22px;
+  color: #555;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 991px) {
+  .section-title {
+    font-size: 34px;
+  }
+
+  .voice-image {
+    height: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .section-title {
+    font-size: 28px;
+  }
+
+  .voice-name {
+    font-size: 15px;
+  }
+
+  .voice-image {
+    height: auto;
+  }
+
+  .audio-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .audio-box {
+    flex-direction: column;
+  }
+}

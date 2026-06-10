@@ -71,33 +71,12 @@ const About = () => {
       {/* header */}
       <Header />
       {/* first section */}
-      <section className="about-hero-wrapper">
-        <div className="hero-overlay"></div>
-
-        <motion.div
-          className="about-hero-content"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <motion.h3
-            className="about-subtitle"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            About
-          </motion.h3>
-
-          <motion.h1
-            className="about-title"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-          >
-            MEET DELNAZ MEDORA
-          </motion.h1>
-        </motion.div>
+      <section className="banner-section">
+        <img
+          src="/images/about-us.png"
+          alt="About Banner"
+          className="banner-image"
+        />
       </section>
       {/* secound section */}
 

@@ -7,42 +7,42 @@ import "./sanctum.css";
 const services = [
   {
     title: "Anxiety Therapy",
-    price: "₹1500",
+    // price: "₹1500",
     video: "./images/video.mp4",
   },
   {
     title: "Depression Therapy",
-    price: "₹1800",
+    // price: "₹1800",
     video: "./images/video2.mp4",
   },
   {
     title: "Couple Therapy",
-    price: "₹2000",
+    // price: "₹2000",
     video: "./images/video.mp4",
   },
   {
     title: "Child Therapy",
-    price: "₹1400",
+    // price: "₹1400",
     video: "./images/video2.mp4",
   },
   {
     title: "Stress Management",
-    price: "₹1200",
+    // price: "₹1200",
     video: "./images/video2.mp4",
   },
   {
     title: "Trauma Therapy",
-    price: "₹2200",
+    // price: "₹2200",
     video: "./images/video.mp4",
   },
    {
     title: "Couple Therapy",
-    price: "₹2000",
+    // price: "₹2000",
     video: "./images/video2.mp4",
   },
   {
     title: "Child Therapy",
-    price: "₹1400",
+    // price: "₹1400",
     video: "./images/video.mp4",
   },
 ];
@@ -81,7 +81,7 @@ const Sanctum = () => {
 
               <div className="card-content">
                 <h3>{item.title}</h3>
-                <button>Book Now – {item.price}</button>
+                <button>Book Now  {item.price}</button>
               </div>
             </motion.div>
           ))}

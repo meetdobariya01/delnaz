@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Testimonial from "../../component/testimonial/testimonial";
 import Sessionform from "../../component/session-form/sessionform";
+import Audio from "../../component/audio/audio";
 
 const cardVariant = {
   hidden: { opacity: 0, y: 60 },
@@ -130,9 +131,7 @@ const Home = () => {
                     className="help-img"
                   />
                   <h3 className="help-card-title">Solve Personal Issues</h3>
-                  <p>
-                    Emotional healing & one on one therapy packages.
-                  </p>
+                  <p>Emotional healing & one on one therapy packages.</p>
                 </motion.div>
               </Col>
 
@@ -149,12 +148,8 @@ const Home = () => {
                     alt="Therapist Training"
                     className="help-img"
                   />
-                  <h3 className="help-card-title">
-                    Parenting workshop 
-                  </h3>
-                  <p>
-                   Mindful therapy for conscious, confident parenting.
-                  </p>
+                  <h3 className="help-card-title">Parenting workshop</h3>
+                  <p>Mindful therapy for conscious, confident parenting.</p>
                 </motion.div>
               </Col>
 
@@ -171,10 +166,10 @@ const Home = () => {
                     alt="Book Therapist"
                     className="help-img"
                   />
-                  <h3 className="help-card-title">Group workshop for emotional healing</h3>
-                  <p>
-                    Emotional Healing Circle.
-                  </p>
+                  <h3 className="help-card-title">
+                    Group workshop for emotional healing
+                  </h3>
+                  <p>Emotional Healing Circle.</p>
                 </motion.div>
               </Col>
 
@@ -191,10 +186,10 @@ const Home = () => {
                     alt="Therapy Packages"
                     className="help-img"
                   />
-                  <h3 className="help-card-title">Corporate workshop with therapeutic interventions</h3>
-                  <p>
-                    Mindful Corporate Healing.
-                  </p>
+                  <h3 className="help-card-title">
+                    Corporate workshop with therapeutic interventions
+                  </h3>
+                  <p>Mindful Corporate Healing.</p>
                 </motion.div>
               </Col>
             </Row>
@@ -214,6 +209,9 @@ const Home = () => {
             </motion.div>
           </Container>
         </section>
+        {/* audio section */}
+        <Audio />
+
         {/* third section */}
 
         <section className="meet-wrapper">
@@ -364,10 +362,10 @@ const Home = () => {
             clarity and confidence.
           </motion.p>
         </section>
-        
+
         {/* sixth section */}
         <Sessionform />
-        
+
         {/* footer */}
         <Footer />
       </div>
