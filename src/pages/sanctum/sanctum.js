@@ -36,7 +36,7 @@ const services = [
     // price: "₹2200",
     video: "./images/video.mp4",
   },
-   {
+  {
     title: "Couple Therapy",
     // price: "₹2000",
     video: "./images/video2.mp4",
@@ -69,6 +69,38 @@ const Sanctum = () => {
       behavior: "instant", // or "smooth"
     });
   }, [pathname]);
+  const handleBookNow = (item) => {
+    const email = "therapy@delnazmedora.com";
+
+    const subject = `Booking Request - ${item.title}`;
+
+    const body = `
+Dear Delnaz Medora,
+
+I hope you are doing well.
+
+I would like to book the ${item.title} package and would appreciate it if you could guide me through the next steps in the booking process.
+
+Could you please share:
+
+The booking procedure
+Available dates and time slots
+Any documents or information required from my side
+Payment details and confirmation process
+
+I would also be grateful if you could let me know your availability so that we can schedule the session at a convenient time.
+
+I look forward to hearing from you.
+
+Thank you for your assistance.
+
+Kind regards,
+  `;
+
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+  };
 
   return (
     <div>
@@ -92,7 +124,9 @@ const Sanctum = () => {
 
               <div className="card-content">
                 <h3>{item.title}</h3>
-                <button>Book Now  {item.price}</button>
+                <button onClick={() => handleBookNow(item)}>
+                  Book Now {item.price}
+                </button>
               </div>
             </motion.div>
           ))}
