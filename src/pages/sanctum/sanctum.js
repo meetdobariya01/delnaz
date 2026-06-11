@@ -83,10 +83,10 @@ I would like to book the ${item.title} package and would appreciate it if you co
 
 Could you please share:
 
-The booking procedure
-Available dates and time slots
-Any documents or information required from my side
-Payment details and confirmation process
+● The booking procedure
+● Available dates and time slots
+● Any documents or information required from my side
+● Payment details and confirmation process
 
 I would also be grateful if you could let me know your availability so that we can schedule the session at a convenient time.
 
