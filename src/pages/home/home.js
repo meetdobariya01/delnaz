@@ -132,6 +132,19 @@ const Home = () => {
                   />
                   <h3 className="help-card-title">Solve Personal Issues</h3>
                   <p>Emotional healing & one on one therapy packages.</p>
+                  <motion.div
+                    className="help-cta-container"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
+                  >
+                    <Button
+                      className="help-btn"
+                      onClick={() => navigate("/healingjourneyform")}
+                    >
+                      Book a Session
+                    </Button>
+                  </motion.div>
                 </motion.div>
               </Col>
 
@@ -150,6 +163,19 @@ const Home = () => {
                   />
                   <h3 className="help-card-title">Parenting workshop</h3>
                   <p>Mindful therapy for conscious, confident parenting.</p>
+                  <motion.div
+                    className="help-cta-container"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
+                  >
+                    <Button
+                      className="help-btn"
+                      onClick={() => navigate("/parentingworkshopform")}
+                    >
+                      Book a Session
+                    </Button>
+                  </motion.div>
                 </motion.div>
               </Col>
 
@@ -170,6 +196,19 @@ const Home = () => {
                     Group workshop for emotional healing
                   </h3>
                   <p>Emotional Healing Circle.</p>
+                  <motion.div
+                    className="help-cta-container"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
+                  >
+                    <Button
+                      className="help-btn"
+                      onClick={() => navigate("/healingjourneyform2")}
+                    >
+                      Book a Session
+                    </Button>
+                  </motion.div>
                 </motion.div>
               </Col>
 
@@ -190,23 +229,39 @@ const Home = () => {
                     Corporate workshop with therapeutic interventions
                   </h3>
                   <p>Mindful Corporate Healing.</p>
+                  <motion.div
+                    className="help-cta-container"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
+                  >
+                    <Button
+                      className="help-btn"
+                      onClick={() => navigate("/sanctum")}
+                    >
+                      Book a Session
+                    </Button>
+                  </motion.div>
                 </motion.div>
               </Col>
             </Row>
 
             {/* CTA Buttons */}
-            <motion.div
+            {/* <motion.div
               className="help-cta-container"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <Button className="help-btn" onClick={() => navigate("/Sanctum")}>
+              <Button
+                className="help-btn"
+                onClick={() => navigate("/typeform")}
+              >
                 Book a Session
               </Button>
 
-              {/* <Button className="help-btn outline">Explore Workshops</Button> */}
-            </motion.div>
+              <Button className="help-btn outline">Explore Workshops</Button>
+            </motion.div> */}
           </Container>
         </section>
         {/* audio section */}
@@ -235,7 +290,7 @@ const Home = () => {
                   transition={{ duration: 1 }}
                 >
                   <p>
-                    For over a decade, Delnaz Medora has helped individuals
+                    I started in 2019, Delnaz Medora has helped individuals
                     overcome emotional challenges and transform their lives
                     through evidence-based therapeutic methods. She empowers
                     clients to take charge of their emotions, behaviours, and

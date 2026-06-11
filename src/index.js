@@ -19,6 +19,9 @@ import Policy from "./pages/policy/policy";
 import Condition from "./pages/condition/condition";
 import Refund from "./pages/refund/refund";
 import Sanctum from "./pages/sanctum/sanctum";
+import HealingJourneyForm from "./component/form3/form3";
+import ParentingWorkshopForm from "./component/form/form";
+import HealingJourneyForm2 from "./component/form2/form2";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -38,6 +41,9 @@ root.render(
       <Route path="policy" element={<Policy />} />
       <Route path="condition" element={<Condition />} />
       <Route path="refund" element={<Refund />} />
+      <Route path="healingjourneyform" element={<HealingJourneyForm />} />
+      <Route path="parentingworkshopform" element={<ParentingWorkshopForm />} />
+      <Route path="healingjourneyform2" element={<HealingJourneyForm2 />} />
     </Routes>
   </Router>,
 );
