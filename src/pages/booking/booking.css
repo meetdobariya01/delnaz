@@ -1,10 +1,10 @@
 /* =========================
    GLOBAL
 ========================= */
-body {
+/* body {
   background-color: #f8f9fa;
   font-family: "Poppins", sans-serif;
-}
+} */
 
 h2 {
   font-weight: 600;
@@ -144,10 +144,10 @@ h2 {
   transform: scale(1.05);
 }
 
-.btn-outline-secondary {
+/* .btn-outline-secondary {
   border-radius: 25px;
   padding: 10px 26px;
-}
+} */
 
 /* =========================
    FORM INPUTS
