@@ -115,7 +115,7 @@ const HealingJourneyForm2 = () => {
     setSubmitStatus({ show: false, type: "", message: "" });
 
     try {
-      const response = await fetch("http://localhost:5005/api/submit-healing-journey", {
+      const response = await fetch("https://app.delnazmedora.com/api/submit-healing-journey", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

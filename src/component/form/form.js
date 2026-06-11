@@ -77,7 +77,7 @@ const ParentingWorkshopForm = () => {
     setSubmitStatus({ show: false, type: "", message: "" });
 
     try {
-      const response = await fetch("http://localhost:5005/api/submit-parenting-form", {
+      const response = await fetch("https://app.delnazmedora.com/api/submit-parenting-form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

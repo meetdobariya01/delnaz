@@ -135,7 +135,7 @@ const Typeform = () => {
     setSubmitStatus({ show: false, type: "", message: "" });
 
     try {
-      const response = await fetch("http://localhost:5005/api/submit-therapy-intake", {
+      const response = await fetch("https://app.delnazmedora.com/api/submit-therapy-intake", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

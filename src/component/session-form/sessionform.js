@@ -45,7 +45,7 @@ const Sessionform = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5005/api/submit-form", {
+      const response = await fetch("https://app.delnazmedora.com/api/submit-form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
