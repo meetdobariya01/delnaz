@@ -8,6 +8,8 @@ import {
   Row,
   Col,
   Form,
+  Alert,
+  Spinner,
 } from "react-bootstrap";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "../header/header";
@@ -16,6 +18,8 @@ import Footer from "../footer/footer";
 const HealingJourneyForm = () => {
   const [step, setStep] = useState(1);
   const totalSteps = 6;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ show: false, type: "", message: "" });
 
   const [formData, setFormData] = useState({
     // PERSONAL DETAILS
@@ -81,6 +85,99 @@ const HealingJourneyForm = () => {
     </motion.div>
   );
 
+  const handleInputChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
+  };
+
+  const handleSubmit = async () => {
+    // Validate required fields
+    if (!formData.surname || !formData.forename || !formData.email || !formData.phone) {
+      setSubmitStatus({
+        show: true,
+        type: "danger",
+        message: "Please fill in all required contact information (Surname, Forename, Email, Phone)."
+      });
+      setStep(1);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ show: false, type: "", message: "" });
+
+    try {
+      const response = await fetch("http://localhost:5005/api/submit-healing-journey-intake", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus({
+          show: true,
+          type: "success",
+          message: "Form Submitted Successfully ✅ We will contact you soon!"
+        });
+        console.log("Final Data:", formData);
+        
+        // Reset form after successful submission
+        setTimeout(() => {
+          setStep(1);
+          setFormData({
+            surname: "",
+            forename: "",
+            preferredName: "",
+            dob: "",
+            address: "",
+            relationshipStatus: "",
+            occupation: "",
+            email: "",
+            phone: "",
+            emergencyName: "",
+            emergencyPhone: "",
+            doctorDetails: "",
+            medication: "",
+            medicalConditions: "",
+            concerns: [],
+            q1: "",
+            q2: "",
+            q3: "",
+            q4: "",
+            q5: "",
+            q6: "",
+            q7: "",
+            q8: "",
+            q9: "",
+            q10: "",
+            q11: "",
+            q12: "",
+          });
+          setTimeout(() => {
+            setSubmitStatus({ show: false, type: "", message: "" });
+          }, 3000);
+        }, 3000);
+      } else {
+        setSubmitStatus({
+          show: true,
+          type: "danger",
+          message: data.message || "Something went wrong. Please try again."
+        });
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      setSubmitStatus({
+        show: true,
+        type: "danger",
+        message: "Network error. Please check your connection and try again."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const concernOptions = [
     "Addictions",
     "Drinking",
@@ -130,13 +227,14 @@ const HealingJourneyForm = () => {
     "Childhood Problems",
     "Sleep Problems",
   ];
+  
   const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "instant", // or "smooth"
+      behavior: "instant",
     });
   }, [pathname]);
 
@@ -146,6 +244,16 @@ const HealingJourneyForm = () => {
       <Container className="my-5">
         <Card className="p-4 shadow">
           <h3 className="text-center mb-3">🌿 Intake & Consultation Form</h3>
+
+          {submitStatus.show && (
+            <Alert 
+              variant={submitStatus.type} 
+              onClose={() => setSubmitStatus({ show: false, type: "", message: "" })}
+              dismissible
+            >
+              {submitStatus.message}
+            </Alert>
+          )}
 
           <ProgressBar
             now={(step / totalSteps) * 100}
@@ -168,51 +276,109 @@ const HealingJourneyForm = () => {
                   <Row>
                     <Col md={6}>
                       <Form.Control
-                        placeholder="Surname"
+                        placeholder="Surname *"
+                        value={formData.surname}
                         onChange={(e) =>
-                          setFormData({ ...formData, surname: e.target.value })
+                          handleInputChange("surname", e.target.value)
                         }
                       />
                     </Col>
                     <Col md={6}>
                       <Form.Control
-                        placeholder="Forename"
+                        placeholder="Forename *"
+                        value={formData.forename}
                         onChange={(e) =>
-                          setFormData({ ...formData, forename: e.target.value })
+                          handleInputChange("forename", e.target.value)
                         }
                       />
                     </Col>
                   </Row>
-                  <Form.Control className="mt-3" placeholder="Preferred Name" />
-                  <Form.Control className="mt-3" type="date" />
+                  <Form.Control 
+                    className="mt-3" 
+                    placeholder="Preferred Name"
+                    value={formData.preferredName}
+                    onChange={(e) =>
+                      handleInputChange("preferredName", e.target.value)
+                    }
+                  />
+                  <Form.Control 
+                    className="mt-3" 
+                    type="date"
+                    value={formData.dob}
+                    onChange={(e) =>
+                      handleInputChange("dob", e.target.value)
+                    }
+                  />
                   <Form.Control
                     className="mt-3"
                     as="textarea"
                     rows={2}
                     placeholder="Address"
+                    value={formData.address}
+                    onChange={(e) =>
+                      handleInputChange("address", e.target.value)
+                    }
                   />
                   <Row className="mt-3">
                     <Col md={6}>
-                      <Form.Control placeholder="Relationship Status" />
+                      <Form.Control 
+                        placeholder="Relationship Status"
+                        value={formData.relationshipStatus}
+                        onChange={(e) =>
+                          handleInputChange("relationshipStatus", e.target.value)
+                        }
+                      />
                     </Col>
                     <Col md={6}>
-                      <Form.Control placeholder="Occupation" />
+                      <Form.Control 
+                        placeholder="Occupation"
+                        value={formData.occupation}
+                        onChange={(e) =>
+                          handleInputChange("occupation", e.target.value)
+                        }
+                      />
                     </Col>
                   </Row>
                   <Row className="mt-3">
                     <Col md={6}>
-                      <Form.Control placeholder="Email" />
+                      <Form.Control 
+                        placeholder="Email *"
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) =>
+                          handleInputChange("email", e.target.value)
+                        }
+                      />
                     </Col>
                     <Col md={6}>
-                      <Form.Control placeholder="Phone" />
+                      <Form.Control 
+                        placeholder="Phone *"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={(e) =>
+                          handleInputChange("phone", e.target.value)
+                        }
+                      />
                     </Col>
                   </Row>
                   <Row className="mt-3">
                     <Col md={6}>
-                      <Form.Control placeholder="Emergency Contact Name" />
+                      <Form.Control 
+                        placeholder="Emergency Contact Name"
+                        value={formData.emergencyName}
+                        onChange={(e) =>
+                          handleInputChange("emergencyName", e.target.value)
+                        }
+                      />
                     </Col>
                     <Col md={6}>
-                      <Form.Control placeholder="Emergency Contact Phone" />
+                      <Form.Control 
+                        placeholder="Emergency Contact Phone"
+                        value={formData.emergencyPhone}
+                        onChange={(e) =>
+                          handleInputChange("emergencyPhone", e.target.value)
+                        }
+                      />
                     </Col>
                   </Row>
                 </>
@@ -222,15 +388,30 @@ const HealingJourneyForm = () => {
               {step === 2 && (
                 <>
                   <h5>Health Information</h5>
-                  <Form.Control
-                    className="mb-3"
-                    placeholder="Doctor’s Name & Address"
+                  <Form.Control 
+                    className="mb-3" 
+                    placeholder="Doctor's Name & Address"
+                    value={formData.doctorDetails}
+                    onChange={(e) =>
+                      handleInputChange("doctorDetails", e.target.value)
+                    }
                   />
-                  <Form.Control className="mb-3" placeholder="Medication" />
+                  <Form.Control 
+                    className="mb-3" 
+                    placeholder="Medication"
+                    value={formData.medication}
+                    onChange={(e) =>
+                      handleInputChange("medication", e.target.value)
+                    }
+                  />
                   <Form.Control
                     as="textarea"
                     rows={4}
                     placeholder="Health Problems / Medical Conditions (Past & Current)"
+                    value={formData.medicalConditions}
+                    onChange={(e) =>
+                      handleInputChange("medicalConditions", e.target.value)
+                    }
                   />
                 </>
               )}
@@ -262,23 +443,31 @@ const HealingJourneyForm = () => {
                     rows={4}
                     placeholder="1. What is the most important issue/problem that you would like to start with? Please state it clearly in 4-5 sentences."
                     className="mb-3"
+                    value={formData.q1}
+                    onChange={(e) => handleInputChange("q1", e.target.value)}
                   />
                   <Form.Control
                     as="textarea"
                     rows={3}
-                    placeholder="2. How does that make you feel? List the emotions that come up for you.?"
+                    placeholder="2. How does that make you feel? List the emotions that come up for you."
                     className="mb-3"
+                    value={formData.q2}
+                    onChange={(e) => handleInputChange("q2", e.target.value)}
                   />
                   <Form.Control
                     as="textarea"
                     rows={3}
                     placeholder="3. What is the WORST thing about this problem?"
                     className="mb-3"
+                    value={formData.q3}
+                    onChange={(e) => handleInputChange("q3", e.target.value)}
                   />
                   <Form.Control
                     as="textarea"
                     rows={3}
                     placeholder="4. What makes you angry and why?"
+                    value={formData.q4}
+                    onChange={(e) => handleInputChange("q4", e.target.value)}
                   />
                 </>
               )}
@@ -291,23 +480,31 @@ const HealingJourneyForm = () => {
                     rows={3}
                     placeholder="5. Biggest regret or sadness?"
                     className="mb-3"
+                    value={formData.q5}
+                    onChange={(e) => handleInputChange("q5", e.target.value)}
                   />
                   <Form.Control
                     as="textarea"
                     rows={3}
                     placeholder="6. If our work together was amazingly successful, what would change for you?"
                     className="mb-3"
+                    value={formData.q6}
+                    onChange={(e) => handleInputChange("q6", e.target.value)}
                   />
                   <Form.Control
                     as="textarea"
                     rows={3}
                     placeholder="7. What strengths or positive qualities are you bringing to our work together?"
                     className="mb-3"
+                    value={formData.q7}
+                    onChange={(e) => handleInputChange("q7", e.target.value)}
                   />
                   <Form.Control
                     as="textarea"
                     rows={3}
                     placeholder="8. How would you know that these sessions were successful? How would they make you feel?"
+                    value={formData.q8}
+                    onChange={(e) => handleInputChange("q8", e.target.value)}
                   />
                 </>
               )}
@@ -320,23 +517,31 @@ const HealingJourneyForm = () => {
                     rows={3}
                     placeholder="9. All of us have repetitive thoughts. What are the thoughts/ beliefs about yourself or about other or about the world relating to this issue which keep circling in your head? (As many as you want)"
                     className="mb-3"
+                    value={formData.q9}
+                    onChange={(e) => handleInputChange("q9", e.target.value)}
                   />
                   <Form.Control
                     as="textarea"
                     rows={3}
                     placeholder="10. What have you tried before that has worked/ not worked?"
                     className="mb-3"
+                    value={formData.q10}
+                    onChange={(e) => handleInputChange("q10", e.target.value)}
                   />
                   <Form.Control
                     as="textarea"
                     rows={3}
                     placeholder="11. Does some part of you feel that these sessions may not work? Why do you think that? List the possible reasons."
                     className="mb-3"
+                    value={formData.q11}
+                    onChange={(e) => handleInputChange("q11", e.target.value)}
                   />
                   <Form.Control
                     as="textarea"
                     rows={3}
                     placeholder="12. How much time are you willing to invest at home so we can move towards your goal even quicker?"
+                    value={formData.q12}
+                    onChange={(e) => handleInputChange("q12", e.target.value)}
                   />
                 </>
               )}
@@ -345,15 +550,24 @@ const HealingJourneyForm = () => {
 
           <div className="d-flex justify-content-between mt-4">
             {step > 1 && (
-              <Button variant="secondary" onClick={() => setStep(step - 1)}>
+              <Button variant="secondary" onClick={() => setStep(step - 1)} disabled={isSubmitting}>
                 Back
               </Button>
             )}
             {step < totalSteps ? (
-              <Button variant="outline-dark" onClick={() => setStep(step + 1)}>Next</Button>
+              <Button variant="outline-dark" onClick={() => setStep(step + 1)} disabled={isSubmitting}>
+                Next
+              </Button>
             ) : (
-              <Button variant="success" onClick={() => console.log(formData)}>
-                Submit
+              <Button variant="success" onClick={handleSubmit} disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+                    {" Submitting..."}
+                  </>
+                ) : (
+                  "Submit"
+                )}
               </Button>
             )}
           </div>
