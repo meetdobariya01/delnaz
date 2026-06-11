@@ -1,9 +1,16 @@
 /* ---------------- PREMIUM THERAPIST CONTACT PAGE DESIGN ---------------- */
 
 /* Soft pastel gradient background */
+@import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 body {
   background: linear-gradient(135deg, #f9f4ff, #e8f3ff);
   background-attachment: fixed;
+  overflow-x: hidden;
+  /* font-family: "Commissioner", sans-serif; */
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
 }
 
 .contact-wrapper {
