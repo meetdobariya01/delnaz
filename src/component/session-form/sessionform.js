@@ -95,7 +95,7 @@ const Sessionform = () => {
   };
 
   return (
-    <div className="bg-light">
+    <div className="back-light">
       <section className="contact-form-wrapper container">
         {/* LEFT FORM */}
         <motion.div

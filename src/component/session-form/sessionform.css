@@ -1,7 +1,12 @@
+
+.back-light {
+  background: #fff;
+}
+
 .contact-form-wrapper {
   display: flex;
   /* min-height: 100vh; */
-  background: #fff;
+  /* background: #fff; */
   padding: 60px;
   gap: 60px;
 }
