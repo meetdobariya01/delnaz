@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Alert, Spinner } from "react-bootstrap";
 import { motion } from "framer-motion";
 import "./typeform.css";
 import Header from "../../component/header/header";
@@ -58,6 +58,9 @@ const concernsList = [
 ];
 
 const Typeform = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ show: false, type: "", message: "" });
+  
   const [formData, setFormData] = useState({
     surname: "",
     forename: "",
@@ -89,7 +92,8 @@ const Typeform = () => {
     });
   };
 
-  const submitForm = () => {
+  const submitForm = async () => {
+    // Validate required fields
     if (
       !formData.surname ||
       !formData.forename ||
@@ -108,20 +112,95 @@ const Typeform = () => {
       !formData.healthProblems ||
       formData.concerns.length === 0
     ) {
-      alert("Please fill all fields!");
+      setSubmitStatus({
+        show: true,
+        type: "danger",
+        message: "Please fill all required fields!"
+      });
       return;
     }
 
-    console.log("SUBMITTED DATA:", formData);
-    alert("Form Submitted Successfully!");
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setSubmitStatus({
+        show: true,
+        type: "danger",
+        message: "Please provide a valid email address."
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ show: false, type: "", message: "" });
+
+    try {
+      const response = await fetch("https://app.delnazmedora.com/api/submit-therapy-intake", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus({
+          show: true,
+          type: "success",
+          message: "Form Submitted Successfully! We will contact you soon."
+        });
+        console.log("SUBMITTED DATA:", formData);
+        
+        // Reset form after successful submission
+        setTimeout(() => {
+          setFormData({
+            surname: "",
+            forename: "",
+            preferredName: "",
+            age: "",
+            dob: "",
+            address: "",
+            maritalStatus: "",
+            occupation: "",
+            email: "",
+            phone: "",
+            emergencyContact: "",
+            doctorDetails: "",
+            lastCheckup: "",
+            medications: "",
+            healthProblems: "",
+            concerns: [],
+          });
+          setSubmitStatus({ show: false, type: "", message: "" });
+        }, 3000);
+      } else {
+        setSubmitStatus({
+          show: true,
+          type: "danger",
+          message: data.message || "Something went wrong. Please try again."
+        });
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      setSubmitStatus({
+        show: true,
+        type: "danger",
+        message: "Network error. Please check your connection and try again."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+  
   const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "instant", // or "smooth"
+      behavior: "instant",
     });
   }, [pathname]);
 
@@ -138,37 +217,57 @@ const Typeform = () => {
               transition={{ duration: 0.6 }}
               className="form-card"
             >
+              {submitStatus.show && (
+                <Alert 
+                  variant={submitStatus.type} 
+                  onClose={() => setSubmitStatus({ show: false, type: "", message: "" })}
+                  dismissible
+                >
+                  {submitStatus.message}
+                </Alert>
+              )}
+
               {/* PERSONAL DETAILS */}
               <h4>Personal Details</h4>
               <Form.Control
                 placeholder="Surname"
                 name="surname"
+                value={formData.surname}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
               <Form.Control
                 className="mt-3"
                 placeholder="Forename"
                 name="forename"
+                value={formData.forename}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
               <Form.Control
                 className="mt-3"
                 placeholder="Preferred Name"
                 name="preferredName"
+                value={formData.preferredName}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
               <Form.Control
                 className="mt-3"
                 type="number"
                 placeholder="Age"
                 name="age"
+                value={formData.age}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
               <Form.Control
                 className="mt-3"
                 type="date"
                 name="dob"
+                value={formData.dob}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
               <Form.Control
                 as="textarea"
@@ -176,13 +275,17 @@ const Typeform = () => {
                 className="mt-3"
                 placeholder="Address"
                 name="address"
+                value={formData.address}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
 
               <Form.Select
                 className="mt-3"
                 name="maritalStatus"
+                value={formData.maritalStatus}
                 onChange={handleChange}
+                disabled={isSubmitting}
               >
                 <option value="">Select Marital Status</option>
                 <option value="Single">Single</option>
@@ -194,7 +297,9 @@ const Typeform = () => {
                 className="mt-3"
                 placeholder="Occupation"
                 name="occupation"
+                value={formData.occupation}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
 
               {/* CONTACT DETAILS */}
@@ -202,39 +307,53 @@ const Typeform = () => {
               <Form.Control
                 placeholder="Email Address"
                 name="email"
+                type="email"
+                value={formData.email}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
               <Form.Control
                 className="mt-3"
                 placeholder="Telephone"
                 name="phone"
+                type="tel"
+                value={formData.phone}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
               <Form.Control
                 className="mt-3"
                 placeholder="Emergency Contact"
                 name="emergencyContact"
+                value={formData.emergencyContact}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
 
               {/* HEALTH INFO */}
               <h4 className="mt-4">Health Information</h4>
               <Form.Control
-                placeholder="Doctor’s Name & Address"
+                placeholder="Doctor's Name & Address"
                 name="doctorDetails"
+                value={formData.doctorDetails}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
               <Form.Control
                 className="mt-3"
                 type="date"
                 name="lastCheckup"
+                value={formData.lastCheckup}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
               <Form.Control
                 className="mt-3"
                 placeholder="Medications"
                 name="medications"
+                value={formData.medications}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
               <Form.Control
                 as="textarea"
@@ -242,7 +361,9 @@ const Typeform = () => {
                 className="mt-3"
                 placeholder="Health Problems"
                 name="healthProblems"
+                value={formData.healthProblems}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
 
               {/* CONCERNS */}
@@ -254,6 +375,7 @@ const Typeform = () => {
                       label={item}
                       checked={formData.concerns.includes(item)}
                       onChange={() => handleCheckbox(item)}
+                      disabled={isSubmitting}
                     />
                   </Col>
                 ))}
@@ -261,8 +383,20 @@ const Typeform = () => {
 
               {/* SUBMIT */}
               <div className="text-center mt-4">
-                <Button variant="success" size="lg" onClick={submitForm}>
-                  Submit Form
+                <Button 
+                  variant="success" 
+                  size="lg" 
+                  onClick={submitForm}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+                      {" Submitting..."}
+                    </>
+                  ) : (
+                    "Submit Form"
+                  )}
                 </Button>
               </div>
             </motion.div>

@@ -8,6 +8,8 @@ import {
   Row,
   Col,
   Form,
+  Alert,
+  Spinner,
 } from "react-bootstrap";
 import { motion, AnimatePresence } from "framer-motion";
 import "./form2.css";
@@ -17,8 +19,14 @@ import Header from "../header/header";
 const HealingJourneyForm2 = () => {
   const [step, setStep] = useState(1);
   const totalSteps = 9;
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ show: false, type: "", message: "" });
 
   const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
     name: "",
     ageRange: "",
     emotionalThemes: [],
@@ -38,6 +46,14 @@ const HealingJourneyForm2 = () => {
     readinessReason: "",
     lettingGo: [],
     reflection: "",
+    supportLevel: "",
+    crisis: "",
+    therapySupport: "",
+    healingDefinition: "",
+    commitment: "",
+    concerns: "",
+    consentCare: false,
+    consentConfidentiality: false,
   });
 
   const handleMultiSelect = (field, value) => {
@@ -71,13 +87,118 @@ const HealingJourneyForm2 = () => {
       />
     </motion.div>
   );
+
+  const handleSubmit = async () => {
+    // Validate required fields
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
+      setSubmitStatus({
+        show: true,
+        type: "danger",
+        message: "Please fill in all contact information before submitting."
+      });
+      setStep(1);
+      return;
+    }
+
+    // Validate consents
+    if (!formData.consentCare || !formData.consentConfidentiality) {
+      setSubmitStatus({
+        show: true,
+        type: "danger",
+        message: "Please accept both consent agreements before submitting."
+      });
+      setStep(9);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ show: false, type: "", message: "" });
+
+    try {
+      const response = await fetch("https://app.delnazmedora.com/api/submit-healing-journey", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus({
+          show: true,
+          type: "success",
+          message: "Form Submitted Successfully ✅ We will contact you soon!"
+        });
+        console.log("Final Data:", formData);
+        
+        // Reset form after successful submission
+        setTimeout(() => {
+          setStep(1);
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            name: "",
+            ageRange: "",
+            emotionalThemes: [],
+            emotionalComfort: "",
+            copingStyle: "",
+            groupComfort: "",
+            menopauseStage: "",
+            physicalChanges: [],
+            bodyRelationship: "",
+            emotionalLandscape: [],
+            nervousResponse: [],
+            groundingTools: "",
+            selfExpression: "",
+            identityShift: "",
+            menopauseMeaning: "",
+            healingApproach: [],
+            readinessReason: "",
+            lettingGo: [],
+            reflection: "",
+            supportLevel: "",
+            crisis: "",
+            therapySupport: "",
+            healingDefinition: "",
+            commitment: "",
+            concerns: "",
+            consentCare: false,
+            consentConfidentiality: false,
+          });
+          setTimeout(() => {
+            setSubmitStatus({ show: false, type: "", message: "" });
+          }, 3000);
+        }, 3000);
+      } else {
+        setSubmitStatus({
+          show: true,
+          type: "danger",
+          message: data.message || "Something went wrong. Please try again."
+        });
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      setSubmitStatus({
+        show: true,
+        type: "danger",
+        message: "Network error. Please check your connection and try again."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "instant", // or "smooth"
+      behavior: "instant",
     });
   }, [pathname]);
 
@@ -92,6 +213,16 @@ const HealingJourneyForm2 = () => {
             <h3 className="text-center mb-2">
               🌿GROUP EMOTIONAL HEALING SESSIONS
             </h3>
+
+            {submitStatus.show && (
+              <Alert 
+                variant={submitStatus.type} 
+                onClose={() => setSubmitStatus({ show: false, type: "", message: "" })}
+                dismissible
+              >
+                {submitStatus.message}
+              </Alert>
+            )}
 
             <div className="d-flex justify-content-between mb-2">
               <small>
@@ -118,10 +249,53 @@ const HealingJourneyForm2 = () => {
                 {/* STEP 1 */}
                 {step === 1 && (
                   <>
-                    <h4>1️⃣ Basic Information</h4>
+                    <h4>1️⃣ Contact Information</h4>
+                    
                     <Form.Control
                       className="mb-3"
-                      placeholder="Your name"
+                      placeholder="First Name *"
+                      value={formData.firstName}
+                      onChange={(e) =>
+                        setFormData({ ...formData, firstName: e.target.value })
+                      }
+                    />
+
+                    <Form.Control
+                      className="mb-3"
+                      placeholder="Last Name *"
+                      value={formData.lastName}
+                      onChange={(e) =>
+                        setFormData({ ...formData, lastName: e.target.value })
+                      }
+                    />
+
+                    <Form.Control
+                      className="mb-3"
+                      type="email"
+                      placeholder="Email Address *"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                    />
+
+                    <Form.Control
+                      className="mb-3"
+                      type="tel"
+                      placeholder="Phone Number *"
+                      value={formData.phone}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
+                    />
+
+                    <hr className="my-4" />
+
+                    <h4>Basic Information</h4>
+                    <Form.Control
+                      className="mb-3"
+                      placeholder="Your name (what you'd like to be called)"
+                      value={formData.name}
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
@@ -149,11 +323,11 @@ const HealingJourneyForm2 = () => {
                 {/* STEP 2 */}
                 {step === 2 && (
                   <>
-                    <h4>2️⃣Emotional Themes & Current Challenges</h4>
+                    <h4>2️⃣ Emotional Themes & Current Challenges</h4>
                     <Row>
                       {[
                         "Anxiety or constant worry",
-                        " Emotional overwhelm or burnout",
+                        "Emotional overwhelm or burnout",
                         "Low self-worth / self-criticism",
                         "Relationship wounds (family, partner, friendships)",
                         "Grief or unresolved loss",
@@ -221,7 +395,7 @@ const HealingJourneyForm2 = () => {
                       "Get overwhelmed",
                       "Talk it out",
                       "Journal / reflect",
-                      "I’m not sure",
+                      "I'm not sure",
                     ].map((i) => (
                       <OptionCard
                         key={i}
@@ -238,7 +412,7 @@ const HealingJourneyForm2 = () => {
                     {/* Listening Capacity */}
                     <p>
                       <strong>
-                        Do you feel able to listen to others’ experiences
+                        Do you feel able to listen to others' experiences
                         without trying to fix them?
                       </strong>
                     </p>
@@ -276,7 +450,7 @@ const HealingJourneyForm2 = () => {
                     </p>
                     {[
                       "Yes",
-                      "I’m nervous but open",
+                      "I'm nervous but open",
                       "I prefer mostly listening",
                     ].map((i) => (
                       <OptionCard
@@ -318,6 +492,7 @@ const HealingJourneyForm2 = () => {
                         rows={3}
                         className="mt-3"
                         placeholder="Please briefly explain so we can assess support needs"
+                        value={formData.reflection}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -346,9 +521,9 @@ const HealingJourneyForm2 = () => {
                         label={i}
                         type="radio"
                         name="therapySupport"
-                        selected={formData.selfExpression === i}
+                        selected={formData.therapySupport === i}
                         onClick={() =>
-                          setFormData({ ...formData, selfExpression: i })
+                          setFormData({ ...formData, therapySupport: i })
                         }
                       />
                     ))}
@@ -500,9 +675,9 @@ const HealingJourneyForm2 = () => {
                         type="radio"
                         name="betweenSessions"
                         label={i}
-                        selected={formData.groupComfort === i}
+                        selected={formData.betweenSessions === i}
                         onClick={() =>
-                          setFormData({ ...formData, groupComfort: i })
+                          setFormData({ ...formData, betweenSessions: i })
                         }
                       />
                     ))}
@@ -521,7 +696,7 @@ const HealingJourneyForm2 = () => {
                       </strong>
                     </p>
 
-                    {["Yes", "I will try", "I’m unsure"].map((i) => (
+                    {["Yes", "I will try", "I'm unsure"].map((i) => (
                       <OptionCard
                         key={i}
                         type="radio"
@@ -643,7 +818,7 @@ const HealingJourneyForm2 = () => {
 
                     <p>
                       <strong>
-                        Is there anything else you’d like to share before
+                        Is there anything else you'd like to share before
                         completing this intake?
                       </strong>
                     </p>
@@ -652,11 +827,11 @@ const HealingJourneyForm2 = () => {
                       as="textarea"
                       rows={4}
                       placeholder="Optional – share anything that feels important or supportive to name..."
-                      value={formData.reflection}
+                      value={formData.additionalInfo}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          reflection: e.target.value,
+                          additionalInfo: e.target.value,
                         })
                       }
                     />
@@ -670,17 +845,25 @@ const HealingJourneyForm2 = () => {
                 <Button
                   variant="outline-secondary"
                   onClick={() => setStep(step - 1)}
+                  disabled={isSubmitting}
                 >
                   Back
                 </Button>
               )}
               {step < totalSteps ? (
-                <Button variant="outline-dark" onClick={() => setStep(step + 1)}>
+                <Button variant="outline-dark" onClick={() => setStep(step + 1)} disabled={isSubmitting}>
                   Next
                 </Button>
               ) : (
-                <Button variant="success" onClick={() => console.log(formData)}>
-                  Submit
+                <Button variant="success" onClick={handleSubmit} disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+                      {" Submitting..."}
+                    </>
+                  ) : (
+                    "Submit"
+                  )}
                 </Button>
               )}
             </div>
