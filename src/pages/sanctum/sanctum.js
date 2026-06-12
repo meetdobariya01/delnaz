@@ -128,7 +128,7 @@ Kind regards,
                   Book Now {item.price}
                 </button>
               </div>
-            </motion.div>
+            </motion.div> 
           ))}
         </div>
       </div>

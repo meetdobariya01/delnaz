@@ -94,6 +94,7 @@ const Home = () => {
 
         {/* caresoul */}
         <Testimonial />
+
         {/* secound section */}
         <section className="help-section">
           <Container>
@@ -118,15 +119,15 @@ const Home = () => {
 
             <Row className="g-4 justify-content-center mt-4">
               {/* Card 1 */}
-              <Col md={3} sm={12}>
+              <Col md={3} sm={12} xs={6}>
                 <motion.div
-                  className="help-card"
+                  className="help-card-home"
                   variants={cardVariant}
                   initial="hidden"
                   whileInView="visible"
                 >
                   <img
-                    src="/images/c-11.jpg"
+                    src="/images/solve-personal-isuue.webp"
                     alt="Solve Issues"
                     className="help-img"
                   />
@@ -149,15 +150,15 @@ const Home = () => {
               </Col>
 
               {/* Card 2 */}
-              <Col md={3} sm={12}>
+              <Col md={3} sm={12} xs={6}>
                 <motion.div
-                  className="help-card"
+                  className="help-card-home"
                   variants={cardVariant}
                   initial="hidden"
                   whileInView="visible"
                 >
                   <img
-                    src="/images/c-33.jpg"
+                    src="/images/parent.webp"
                     alt="Therapist Training"
                     className="help-img"
                   />
@@ -180,15 +181,15 @@ const Home = () => {
               </Col>
 
               {/* Card 3 */}
-              <Col md={3} sm={12}>
+              <Col md={3} sm={12} xs={6}>
                 <motion.div
-                  className="help-card"
+                  className="help-card-home"
                   variants={cardVariant}
                   initial="hidden"
                   whileInView="visible"
                 >
                   <img
-                    src="/images/c-44.jpg"
+                    src="/images/group-discuss.webp"
                     alt="Book Therapist"
                     className="help-img"
                   />
@@ -213,15 +214,15 @@ const Home = () => {
               </Col>
 
               {/* Card 4 */}
-              <Col md={3} sm={12}>
+              <Col md={3} sm={12} xs={6}>
                 <motion.div
-                  className="help-card"
+                  className="help-card-home"
                   variants={cardVariant}
                   initial="hidden"
                   whileInView="visible"
                 >
                   <img
-                    src="/images/c-22.jpg"
+                    src="/images/corporate.webp"
                     alt="Therapy Packages"
                     className="help-img"
                   />
@@ -304,27 +305,27 @@ const Home = () => {
 
                   <ul className="issue-list">
                     <li>
-                      <strong>Depression —</strong> Break free from emotional
+                      <strong>Depression -</strong> Break free from emotional
                       heaviness and rediscover hope.
                     </li>
                     <li>
-                      <strong>Anxiety —</strong> Ease overwhelming thoughts and
+                      <strong>Anxiety -</strong> Ease overwhelming thoughts and
                       embrace inner calm.
                     </li>
                     <li>
-                      <strong>Fears & Phobia —</strong> Transform fear into
+                      <strong>Fears & Phobia -</strong> Transform fear into
                       confidence through guided therapy.
                     </li>
                     <li>
-                      <strong>Weight Issues —</strong> Heal emotional triggers &
+                      <strong>Weight Issues -</strong> Heal emotional triggers &
                       build body confidence.
                     </li>
                     <li>
-                      <strong>Addictions —</strong> Break free from alcohol &
+                      <strong>Addictions -</strong> Break free from alcohol &
                       smoking dependency.
                     </li>
                     <li>
-                      <strong>Relationship Issues —</strong> Build stronger,
+                      <strong>Relationship Issues -</strong> Build stronger,
                       healthier connections.
                     </li>
                   </ul>

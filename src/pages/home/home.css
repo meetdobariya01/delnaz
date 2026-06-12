@@ -163,24 +163,24 @@
   color: #555;
 }
 
-.help-card {
+.help-card-home {
   background: #fff;
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 5px;
+  padding: 10px;
   text-align: center;
   box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.08);
   transition: 0.3s;
   cursor: pointer;
 }
 
-.help-card:hover {
+.help-card-home:hover {
   transform: translateY(-10px);
   box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.12);
 }
 
 .help-img {
   width: 100%;
-  border-radius: 16px;
+  border-radius: 10px;
 }
 
 .help-card-title {
@@ -193,7 +193,8 @@
   display: flex;
   justify-content: center;
   gap: 18px;
-  margin-top: 50px;
+  /* margin-top: 50px; */
+  margin-bottom: 10px;
 }
 
 .help-btn {
